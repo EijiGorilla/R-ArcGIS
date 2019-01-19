@@ -1,0 +1,99 @@
+---
+title: "sf_Example"
+author: "EijiMatsuzaki"
+date: "2019”N1ŒŽ19“ú"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r}
+library(sf)
+library(tidyverse)
+library(rnaturalearth)
+library(dplyr) # for pipe %>%
+library(ggplot2)
+library(ggrepel)
+```
+
+## South American countries with new CRS
+
+You can also embed plots, for example:
+
+```{r, echo=TRUE}
+countries_sf=ne_countries(scale="medium",returnclass = "sf") # note rnaturalearth has "sf" class
+```
+
+## South Amercian countries with new CRS
+```{r}
+countries_sf %>%
+  filter(continent=="South America") %>%
+  select(name) %>%
+  st_transform(crs="+proj=moll +datum=WGS84") %>%
+  plot(key.pos=NULL,graticule=TRUE,main="South America")
+
+```
+## Prepare data
+```{r}
+# Read data
+letters=read_csv("C:/Users/oc3512/Desktop/intro-to-r-master/data/correspondence-data-1585.csv")
+locations=read_csv("C:/Users/oc3512/Desktop/intro-to-r-master/data/locations.csv")
+head(locations)
+
+# Letters by soruce
+sources=letters %>%
+  group_by(source) %>%
+  count() %>%
+  rename(place=source) %>%
+  add_column(type="source") %>%
+  ungroup()
+
+# LEtter by destination
+destinations=letters %>%
+  group_by(destination) %>%
+  count() %>%
+  rename(place=destination) %>%
+  add_column(type="destination") %>%
+  ungroup()
+
+# Bind
+letters_data=rbind(sources,destinations) %>%
+  mutate(type=as_factor(type))
+
+# Join letters_data to locations
+geo_data=left_join(letters_data,locations,by="place")
+
+# Convert to sf object
+points_sf=st_as_sf(geo_data,coords=c("lon","lat"),crs=4326)
+coast_sf=ne_coastline(scale="medium",returnclass = "sf")
+
+```
+
+## Plot sf objects with ggplot2
+```{r}
+ggplot() +
+  geom_sf(data=coast_sf) +
+  geom_sf(data=points_sf, aes(color=type,size=n),alpha=0.7,show.legend="point") +
+  coord_sf(xlim=c(-1,14),ylim=c(44,55))
+```
+
+## More plot sf objects with ggplot2
+```{r}
+ggplot() +
+  geom_sf(data=countries_sf,fill=gray(0.8),color=gray(0.7)) +
+  geom_sf(data=points_sf,aes(color=type,size=n),alpha=0.7,show.legend="point") +
+  coord_sf(xlim=c(-1,14),ylim=c(44,55),datum=NA) + # removes graticules
+  geom_text_repel(data=locations,aes(x=lon,y=lat,label=place)) +
+  labs(title="Correspondence of Daniel van der Meulen, 1585",size="Letters",color="Type",x=NULL,y=NULL) +
+  guides(color=guide_legend(override.aes = list(size=6))) +
+  theme_bw() # adds a border around plot
+```
+
