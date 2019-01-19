@@ -17,7 +17,7 @@ Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com
       if(length(grep(".xml",basename(shp)))==1){
        print("not shapefile")
        } else {
-        assign(shp, readOGR(shp))
+        assign(gsub(".shp","",shp), readOGR(shp)) # use gsub to remove ".shp" character to assign shapefile names
        }
      }
 ------------------
