@@ -10,8 +10,9 @@ Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com
 # R Spatial Files
 1. Open Multiple Shapefiles
 ------------------
-     wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
-             listFiles=list.files(wd,pattern=".shp")
+    library(rgdal)
+    wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
+    listFiles=list.files(wd,pattern=".shp")
     for (shp in listFiles){
       if(length(grep(".xml",basename(shp)))==1){
        print("not shapefile")
