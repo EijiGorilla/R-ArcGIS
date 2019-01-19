@@ -9,14 +9,14 @@ Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com
 
 # Open Multiple Spatial Files
 ------------------
-wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
-listFiles=list.files(wd,pattern=".shp")
+  wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
+  listFiles=list.files(wd,pattern=".shp")
 
-for (shp in listFiles){
-  if(length(grep(".xml",basename(shp)))==1){
-    print("not shapefile")
-  } else {
-    assign(shp, readOGR(shp))
+  for (shp in listFiles){
+    if(length(grep(".xml",basename(shp)))==1){
+      print("not shapefile")
+    } else {
+      assign(shp, readOGR(shp))
+    }
   }
-}
 ------------------
