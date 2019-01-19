@@ -8,7 +8,7 @@ Website:https://r-arcgis.github.io
 Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
 
 # R Spatial Files
-Open Multiple Shapefiles
+1. Open Multiple Shapefiles
 ------------------
   wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
   listFiles=list.files(wd,pattern=".shp")
@@ -19,5 +19,5 @@ Open Multiple Shapefiles
     } else {
       assign(shp, readOGR(shp))
     }
-  }
+        }
 ------------------
