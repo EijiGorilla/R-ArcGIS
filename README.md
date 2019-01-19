@@ -8,6 +8,7 @@ Website:https://r-arcgis.github.io
 Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
 
 # Open Multiple Spatial Files
+wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
 listFiles=list.files(wd,pattern=".shp")
 
 for (shp in listFiles){
