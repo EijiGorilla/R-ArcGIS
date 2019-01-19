@@ -1,6 +1,6 @@
 # R-ArcGIS
 
-This repository gives you basic instructions and tips to apply R-ArcGIS Bridge'
+This repository gives you basic instructions and tips for R and ArcGIS interactions such as R-ArcGIS Bridge'
 
 Website:https://r-arcgis.github.io
 
