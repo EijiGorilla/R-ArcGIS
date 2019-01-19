@@ -7,7 +7,8 @@ Website:https://r-arcgis.github.io
 # sf Package
 Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
 
-# R: Open Multiple Spatial Files
+# R Spatial Files
+Open Multiple Shapefiles
 ------------------
   wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
   listFiles=list.files(wd,pattern=".shp")
@@ -20,14 +21,3 @@ Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com
     }
   }
 ------------------
-Print a list of feature datasets and feature classes
------------------
-    import arcpy
-        arcpy.env.workspace="C:/gis03/ex01/ex01.gdb"  
-        dataset=arcpy.ListDatasets("*","Feature")
-        for data in dataset:
-            print("Feature datasets: "+data)
-            fcList=arcpy.ListFeatureClasses("*","",data)
-            for fc in fcList:
-                print(fc)
------------------------
