@@ -10,14 +10,14 @@ Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com
 # R Spatial Files
 1. Open Multiple Shapefiles
 ------------------
-    library(rgdal)
+    library(sf)
     wd=setwd("C:/Users/oc3512/Documents/ArcGIS/Projects/Python_practice/Lesson1")
     listFiles=list.files(wd,pattern=".shp")
     for (shp in listFiles){
       if(length(grep(".xml",basename(shp)))==1){
        print("not shapefile")
        } else {
-        assign(gsub(".shp","",shp), readOGR(shp)) # use gsub to remove ".shp" character to assign shapefile names
+        assign(gsub(".shp","",shp), st_read(shp)) # use gsub to remove ".shp" character to assign shapefile names
        }
      }
 ------------------
