@@ -5,8 +5,8 @@ This repository gives you basic instructions and tips for R and ArcGIS interacti
 Website:https://r-arcgis.github.io
 
 # sf Package
-Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
-Vignettes: https://cran.r-project.org/web/packages/sf/index.html
+*Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
+*Vignettes: https://cran.r-project.org/web/packages/sf/index.html(Lots of examples)
 
 # R Spatial Files
 1. Open Multiple Shapefiles
