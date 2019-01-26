@@ -7,7 +7,7 @@ Website:https://r-arcgis.github.io
 # sf Package
 *Tutorial: https://www.jessesadler.com/post/gis-with-r-intro/; https://github.com/jessesadler/intro-to-r
 
-*Vignettes: https://cran.r-project.org/web/packages/sf/index.html(Lots of examples)
+*Vignettes (Lots of examples): https://cran.r-project.org/web/packages/sf/index.html
 
 # R Spatial Files
 1. Open Multiple Shapefiles
