@@ -1,7 +1,8 @@
-# R-ArcGIS
+# R-GIS
 
-This repository gives you basic instructions and tips for R and ArcGIS interactions such as R-ArcGIS Bridge'
+This repository gives you basic instructions and tips for R and GIS interactions
 
+# R-ArcGIS Bridge
 Website:https://r-arcgis.github.io
 
 # sf Package
@@ -22,4 +23,18 @@ Website:https://r-arcgis.github.io
         assign(gsub(".shp","",shp), st_read(shp)) # use gsub to remove ".shp" character to assign shapefile names
        }
      }
+------------------
+
+# R and PostgreSQL
+1. Connect PostgreSQL and Load Spatial Data
+------------------
+       library(sf)
+       library(RPostgreSQL)
+
+    pg = dbDriver("PostgreSQL")
+    con = dbConnect(pg, user="postgres", password="timberland",host="localhost", port=5432, dbname="postgres")
+    dbListTables(con)
+
+    x = st_read(con, "delete", query = NULL)
+    layers=st_layers(con,query=NULL)
 ------------------
