@@ -36,5 +36,4 @@ Website:https://r-arcgis.github.io
     dbListTables(con)
 
     x = st_read(con, "delete", query = NULL)
-    layers=st_layers(con,query=NULL)
 ------------------
