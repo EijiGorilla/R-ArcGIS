@@ -28,12 +28,19 @@ Website:https://r-arcgis.github.io
 # R and PostgreSQL
 1. Connect PostgreSQL and Load Spatial Data
 ------------------
-       library(sf)
-       library(RPostgreSQL)
-
+    library(sf)
+    library(RPostgreSQL)
+       
+    ### Connct PostgreSQL
     pg = dbDriver("PostgreSQL")
     con = dbConnect(pg, user="postgres", password="timberland",host="localhost", port=5432, dbname="postgres")
+    
+    ### List tables
     dbListTables(con)
-
+    
+    ### Read Table
     x = st_read(con, "delete", query = NULL)
+    
+    ### Write Table
+    dbWriteTable(con, "delete_11", x, row.names=FALSE, overwrite=TRUE)
 ------------------
