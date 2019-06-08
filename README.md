@@ -25,6 +25,33 @@ Website:https://r-arcgis.github.io
      }
 ------------------
 
+2. Open and Write features from/to File Geodatabase in ArcGIS
+------------------
+    library(sf)
+    library(rgdal)
+    library(dplyr)
+    
+    ## read vector in file geodatabase
+    a=choose.dir()
+fgdb="C:\\Users\\oc3512\\Documents\\ArcGIS\\Projects\\MMSP\\MMSP_utm.gdb"
+listLayers=ogrListLayers(fgdb)
+
+la=st_read(dsn=fgdb,layer = listLayers[6])
+
+# read a table to merge
+b=file.choose()
+table=read.csv(b)
+
+# Merge
+test=la %>% left_join(table,by="LotNum")
+
+# Write to file geodatabase
+library(arcgisbinding)
+arc.check_product()
+
+arc.write("C:/Users/oc3512/Documents/ArcGIS/Projects/MMSP/MMSP_utm.gdb/test",data=test,overwrite=TRUE)
+
+
 # R and PostgreSQL
 1. Connect PostgreSQL and Load Spatial Data
 ------------------
